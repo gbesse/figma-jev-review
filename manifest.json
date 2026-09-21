@@ -1,0 +1,14 @@
+{
+  "name": "Jev Copy Review",
+  "id": "000000000000000000",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "editorType": ["figma", "figjam"],
+  "documentAccess": "dynamic-page",
+  "relaunchButtons": [{ "command": "review", "name": "Review copy", "multipleSelection": true }],
+  "networkAccess": {
+    "allowedDomains": ["https://api.typesafe.ai"],
+    "reasoning": "The plugin sends only the explicitly selected TextNode content to TypeSafe AI when the user runs a review.",
+    "devAllowedDomains": ["http://127.0.0.1:8787", "http://localhost:8787"]
+  }
+}

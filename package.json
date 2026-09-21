@@ -1,0 +1,20 @@
+{
+  "name": "@gbesse/figma-jev-review",
+  "version": "0.1.0",
+  "description": "Review selected Figma copy against declared criteria and point back to exact TextNodes.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "tsc --noEmit && npm run build && node scripts/check.mjs",
+    "test": "npm run build && node scripts/build-test.mjs && node --test",
+    "demo": "npm run build && node scripts/demo.mjs"
+  },
+  "engines": { "node": ">=22" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/gbesse/figma-jev-review.git" },
+  "devDependencies": {
+    "@figma/plugin-typings": "1.119.0",
+    "esbuild": "0.25.10",
+    "typescript": "5.9.3"
+  }
+}

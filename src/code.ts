@@ -1,0 +1,5 @@
+// Purpose: Bridge Figma's selected TextNodes to the isolated plugin UI and focus exact cited nodes on demand.
+function collect(node:SceneNode,out:Array<{id:string;name:string;text:string}>){if(node.type==='TEXT'&&node.characters.trim())out.push({id:node.id,name:node.name,text:node.characters});if('children'in node)for(const child of node.children)collect(child,out)}
+function sendSelection(){const nodes:Array<{id:string;name:string;text:string}>=[];for(const node of figma.currentPage.selection)collect(node,nodes);figma.ui.postMessage({type:'selection',nodes})}
+figma.showUI(__html__,{width:440,height:650,themeColors:true});sendSelection();figma.on('selectionchange',sendSelection);
+figma.ui.onmessage=async(message:{type:string;nodeId?:string})=>{if(message.type==='focus-node'&&message.nodeId){const node=await figma.getNodeByIdAsync(message.nodeId);if(node&&'visible'in node){figma.currentPage.selection=[node as SceneNode];figma.viewport.scrollAndZoomIntoView([node as SceneNode])}}if(message.type==='close')figma.closePlugin()};

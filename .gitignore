@@ -1,0 +1,7 @@
+# Purpose: Keep generated bundles, dependencies, credentials, and local application files out of source control.
+node_modules/
+dist/
+dist-test/
+.env
+.DS_Store
+*.log

@@ -1,0 +1,2 @@
+// Purpose: Check manifest restrictions and compiled bundle properties that TypeScript cannot express.
+import{readFile}from'node:fs/promises';const m=JSON.parse(await readFile('manifest.json','utf8'));if(m.documentAccess!=='dynamic-page'||!m.networkAccess.allowedDomains.every(x=>x==='https://api.typesafe.ai'))throw new Error('Manifest access is broader than documented');const code=await readFile('dist/code.js','utf8');if(!code.includes('showUI')||code.includes('jev-latest'))throw new Error('Unexpected plugin bundle');console.log('Manifest and bundle checks passed');
