@@ -5,7 +5,6 @@
   "main": "dist/code.js",
   "editorType": ["figma", "figjam"],
   "documentAccess": "dynamic-page",
-  "relaunchButtons": [{ "command": "review", "name": "Review copy", "multipleSelection": true }],
   "networkAccess": {
     "allowedDomains": ["https://api.typesafe.ai"],
     "reasoning": "The plugin sends only the explicitly selected TextNode content to TypeSafe AI when the user runs a review.",
