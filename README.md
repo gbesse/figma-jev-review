@@ -23,6 +23,10 @@ Select a frame or text layers, open **Jev Copy Review**, choose a pack, enter a 
 
 Use `npm run demo` for the built offline panel path. Synthetic core tests make no network calls. See [privacy](docs/privacy.md).
 
+## Try an exact TextNode citation offline
+
+`npm run demo:citation` supplies synthetic checkout answers, identifies a weak renewal criterion and maps its citation back to one selected TextNode. No Figma session or Jev request is needed. It previews the core identity contract, not the in-app selection or zoom behavior.
+
 ## Boundaries and validation
 
 This is a copy review aid, not accessibility conformance, legal review, design scoring, or an editor. Figma text can contain instructions that affect the judgment. English works best. Thresholds are not calibrated.

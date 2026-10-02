@@ -1,13 +1,14 @@
 {
   "name": "@gbesse/figma-jev-review",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Review selected Figma copy against declared criteria and point back to exact TextNodes.",
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "tsc --noEmit && npm run build && node scripts/check.mjs",
     "test": "npm run build && node scripts/build-test.mjs && node --test",
-    "demo": "npm run build && node scripts/demo.mjs"
+    "demo": "npm run build && node scripts/demo.mjs",
+    "demo:citation": "node scripts/build-test.mjs && node scripts/citation-demo.mjs"
   },
   "engines": { "node": ">=22" },
   "license": "MIT",
