@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-Hardened the TypeSafe transport tests, verified typed-request validation and secret redaction, and removed an inactive relaunch-button declaration from the Figma manifest.
+Run the exact-citation example in CI and ignore local environment-file variants.
+
+## 0.1.1
+
+Hardened the TypeSafe transport tests, verified typed-request validation and secret redaction, removed an inactive relaunch-button declaration from the Figma manifest, and added an exact TextNode citation example.
 
 ## 2026-09-21 — Initial public alpha
 
