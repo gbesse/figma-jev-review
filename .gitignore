@@ -3,5 +3,7 @@ node_modules/
 dist/
 dist-test/
 .env
+.env.*
+!.env.example
 .DS_Store
 *.log
