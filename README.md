@@ -38,3 +38,11 @@ This is a copy review aid, not accessibility conformance, legal review, design s
 [Jev Judgment Wall](https://github.com/gbesse/jev-judgmentwall) · [Jev Roast](https://github.com/gbesse/jev-roast) · [DecisionPacks](https://github.com/gbesse/decisionpacks) · [Jev A11y](https://github.com/gbesse/jev-a11y)
 
 Independent project; not affiliated with TypeSafe AI or Figma. [TypeSafe API](https://docs.typesafe.ai/api) · [Figma Plugin API](https://developers.figma.com/docs/plugins/)
+
+## Complete exact-node selection / Sélection exacte / Selección exacta
+
+EN: Reviews now reject more than 255 nonempty unique text nodes instead of silently truncating. Identical repeated nodes are deduplicated; conflicting content for one ID fails before a request. Selected text keeps original leading/trailing whitespace, and prototype property names are not accepted as citations. The result lookup uses the same validated selection. Build and pure-core tests do not prove Figma host permissions or navigation; no live Figma/Jev call is made.
+
+FR : La revue refuse désormais plus de 255 nœuds de texte uniques non vides au lieu de tronquer silencieusement. Les répétitions identiques sont dédupliquées ; un même ID avec contenu divergent échoue avant requête. Le texte conserve ses espaces initiaux/finals et les propriétés du prototype ne sont pas des citations. La recherche de résultat utilise la même sélection validée. Build et tests du cœur ne prouvent ni permissions ni navigation dans Figma ; aucun appel Figma/Jev réel.
+
+ES: Rechaza más de 255 nodos únicos no vacíos en lugar de truncar silenciosamente. Deduplica nodos repetidos idénticos; contenido distinto para un ID falla antes de pedir. Conserva espacios iniciales/finales y no acepta propiedades del prototipo como citas. Usa la misma selección validada para resultados. Build y pruebas del núcleo no demuestran permisos/navegación Figma; sin llamadas Figma/Jev reales.
