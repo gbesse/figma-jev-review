@@ -46,3 +46,10 @@ EN: Reviews now reject more than 255 nonempty unique text nodes instead of silen
 FR : La revue refuse désormais plus de 255 nœuds de texte uniques non vides au lieu de tronquer silencieusement. Les répétitions identiques sont dédupliquées ; un même ID avec contenu divergent échoue avant requête. Le texte conserve ses espaces initiaux/finals et les propriétés du prototype ne sont pas des citations. La recherche de résultat utilise la même sélection validée. Build et tests du cœur ne prouvent ni permissions ni navigation dans Figma ; aucun appel Figma/Jev réel.
 
 ES: Rechaza más de 255 nodos únicos no vacíos en lugar de truncar silenciosamente. Deduplica nodos repetidos idénticos; contenido distinto para un ID falla antes de pedir. Conserva espacios iniciales/finales y no acepta propiedades del prototipo como citas. Usa la misma selección validada para resultados. Build y pruebas del núcleo no demuestran permisos/navegación Figma; sin llamadas Figma/Jev reales.
+
+
+FR : Les scores sont bornés de 0 au dernier niveau déclaré (`n-1`), et les compteurs de tokens sont des entiers sûrs positifs ou nuls. Le transport accepte 0–3 relances et 1–120 000 ms. Les erreurs visibles gardent le statut HTTP mais aucun corps distant ni diagnostic réseau brut. Cela protège le contrat et la confidentialité des diagnostics ; pas de preuve de qualité éditoriale ni de test dans l’éditeur Figma réel.
+
+EN: Scores range from 0 to the last declared level (`n-1`), and token counters must be nonnegative safe integers. Transport accepts 0–3 retries and 1–120,000 ms. Visible errors retain HTTP status but no remote body or raw network diagnostic. This protects the contract and diagnostic privacy; no editorial-quality proof or real Figma editor test.
+
+ES: Las puntuaciones van de 0 al último nivel declarado (`n-1`), y los contadores de tokens son enteros seguros no negativos. El transporte acepta 0–3 reintentos y 1–120.000 ms. Los errores conservan el estado HTTP sin cuerpo remoto ni diagnóstico bruto de red. Protege contrato y privacidad de diagnósticos; sin demostrar calidad editorial ni prueba en Figma real.

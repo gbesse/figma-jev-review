@@ -5,4 +5,13 @@ const payload={model:'jev-1.13.0',answers:{clear:{type:'noul',noul:.8}},usage:{i
 const response=(body=payload,status=200)=>new Response(JSON.stringify(body),{status});
 test('sends a typed request and validates its response',async()=>{let auth='';const result=await callJev(request,{apiKey:'test-secret',fetchImpl:async(_url,init)=>{auth=new Headers(init?.headers).get('authorization')??'';return response()}});assert.equal(result.answers.clear.type,'noul');assert.equal(auth,'Bearer test-secret')});
 test('retries network TypeError but not typed response errors',async()=>{let calls=0;await callJev(request,{apiKey:'x',retries:2,fetchImpl:async()=>{calls++;if(calls<3)throw new TypeError('offline');return response()}});assert.equal(calls,3);await assert.rejects(()=>callJev(request,{apiKey:'x',retries:2,fetchImpl:async()=>response({...payload,model:'wrong'})}),/envelope/)});
-test('redacts the key from HTTP errors',async()=>{await assert.rejects(()=>callJev(request,{apiKey:'do-not-leak',retries:0,fetchImpl:async()=>new Response('failure do-not-leak',{status:400})}),error=>error instanceof Error&&!error.message.includes('do-not-leak')&&error.message.includes('[redacted]'))});
+test('redacts the key from HTTP errors',async()=>{await assert.rejects(()=>callJev(request,{apiKey:'do-not-leak',retries:0,fetchImpl:async()=>new Response('failure do-not-leak',{status:400})}),error=>error instanceof Error&&!error.message.includes('do-not-leak')&&error.message.includes('HTTP 400'))});
+
+
+test('invalid retry and timeout limits fail before fetching',async()=>{
+ for(const limits of [{retries:Infinity},{retries:-1},{retries:4},{retries:true},{timeoutMs:NaN},{timeoutMs:0},{timeoutMs:120001}]){let calls=0;await assert.rejects(callJev(request,{apiKey:'synthetic',...limits,fetchImpl:async()=>{calls++;return response();}}),/Invalid transport limits/);assert.equal(calls,0);}
+});
+test('provider and network diagnostics never become visible plugin errors',async()=>{
+ await assert.rejects(callJev(request,{apiKey:'synthetic',retries:0,fetchImpl:async()=>new Response('synthetic-private-user-content',{status:500})}),error=>error.message.includes('HTTP 500')&&!error.message.includes('synthetic-private'));
+ await assert.rejects(callJev(request,{apiKey:'synthetic',retries:0,fetchImpl:async()=>{throw new TypeError('synthetic-private-network-content');}}),error=>error.message.includes('Network unavailable')&&!error.message.includes('synthetic-private'));
+});
