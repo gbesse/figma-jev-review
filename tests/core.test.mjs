@@ -12,6 +12,14 @@ test('selection preserves raw copy deduplicates identical nodes and refuses conf
 });
 test('prototype names are not legitimate selected-node citations',()=>{
  const request=buildCitationRequest(nodes,[pack.criteria[0]]);
- const response={model:'jev-1.13.0',answers:{clear:{type:'choice',choice:'toString'}},usage:{input_tokens:1}};
+ const response={model:'jev-1.13.0',answers:{clear:{type:'choice',choice:'toString'}},usage:{input_tokens:1,output_tokens:0}};
  assert.throws(()=>validateResponse(response,request.questions),/Invalid choice/);
+});
+
+
+test('score is bounded by the last declared level rather than the number of levels',()=>{
+ const request=buildReviewRequest(nodes,pack);const first={model:'jev-1.13.0',answers:{clear:{type:'score',score:2},safe:{type:'noul',noul:.8}},usage:{input_tokens:1,output_tokens:0}};
+ assert.equal(validateResponse(first,request.questions),first);
+ for(const score of [2.01,2.9,3,Infinity])assert.throws(()=>validateResponse({...first,answers:{...first.answers,clear:{type:'score',score}}},request.questions),/Invalid score/);
+ for(const usage of [{input_tokens:-1,output_tokens:0},{input_tokens:1,output_tokens:-1},{input_tokens:1.5,output_tokens:0}])assert.throws(()=>validateResponse({...first,usage},request.questions),/envelope/);
 });

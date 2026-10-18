@@ -8,14 +8,14 @@ const nodes = [
   {id: 'node_2', name: 'Renewal', text: 'Continue'},
 ];
 const firstRequest = buildReviewRequest(nodes, pack);
-const first = {model: 'jev-1.13.0', usage: {input_tokens: 20}, answers: {
+const first = {model: 'jev-1.13.0', usage: {input_tokens: 20, output_tokens: 0}, answers: {
   total: {type: 'noul', noul: 0.9}, renewal: {type: 'noul', noul: 0.2},
   cta: {type: 'score', score: 3}, recovery: {type: 'noul', noul: 0.9},
 }};
 validateResponse(first, firstRequest.questions);
 const weak = weakCriteria(first, pack);
 const secondRequest = buildCitationRequest(nodes, weak);
-const second = {model: 'jev-1.13.0', usage: {input_tokens: 10}, answers: {renewal: {type: 'choice', choice: 'node_2'}}};
+const second = {model: 'jev-1.13.0', usage: {input_tokens: 10, output_tokens: 0}, answers: {renewal: {type: 'choice', choice: 'node_2'}}};
 validateResponse(second, secondRequest.questions);
 const citations = combineResults(first, second, pack, nodes).filter(result => result.citation).map(result => ({criterion: result.criterion.id, nodeId: result.citation.id, text: result.citation.text}));
 if (citations.length !== 1 || citations[0].nodeId !== 'node_2') throw new Error('Synthetic citation mismatch');
