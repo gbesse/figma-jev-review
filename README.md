@@ -53,3 +53,11 @@ FR : Les scores sont bornés de 0 au dernier niveau déclaré (`n-1`), et les co
 EN: Scores range from 0 to the last declared level (`n-1`), and token counters must be nonnegative safe integers. Transport accepts 0–3 retries and 1–120,000 ms. Visible errors retain HTTP status but no remote body or raw network diagnostic. This protects the contract and diagnostic privacy; no editorial-quality proof or real Figma editor test.
 
 ES: Las puntuaciones van de 0 al último nivel declarado (`n-1`), y los contadores de tokens son enteros seguros no negativos. El transporte acepta 0–3 reintentos y 1–120.000 ms. Los errores conservan el estado HTTP sin cuerpo remoto ni diagnóstico bruto de red. Protege contrato y privacidad de diagnósticos; sin demostrar calidad editorial ni prueba en Figma real.
+
+## Sélection figée / Frozen selection / Selección fijada
+
+FR — Chaque analyse utilise une copie de la sélection et du pack. Changer l’un des deux annule l’analyse, efface les résultats obsolètes et bloque les relances réseau ; une réponse tardive ne peut plus modifier le nouveau panneau. Une requête déjà reçue par TypeSafe peut néanmoins être facturée. Le bouton d’une citation continue de viser son nœud exact.
+
+EN — Each review uses a snapshot of its selection and pack. Changing either cancels the review, clears stale results and stops network retries; late responses cannot overwrite the new panel. Requests already received by TypeSafe may still be charged. Citation buttons continue to target the exact cited node.
+
+ES — Cada revisión usa una copia de selección y paquete. Cambiar cualquiera cancela la revisión, borra resultados obsoletos y detiene reintentos; respuestas tardías no sobrescriben el panel nuevo. Peticiones ya recibidas por TypeSafe pueden facturarse. Los botones de citas siguen apuntando al nodo exacto.
